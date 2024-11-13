@@ -4,7 +4,7 @@ class chromosome:
     def __init__(self, genes=None):
         if genes is None:
             # Générer 63 mouvements aléatoires (1-8)
-            self.genes = [random.randint(1, 8) for _ in range(63)]
+            self.genes = [random.randint(0, 7) for _ in range(63)]
         else:
             self.genes = genes
 

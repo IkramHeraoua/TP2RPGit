@@ -2,7 +2,7 @@
 class knight:
     def __init__(self, chromosome=None):
         self.position = [0, 0]
-        self.chromosome = chromosome if chromosome is not None else chromosome.chromosome()
+        #self.chromosome = chromosome if chromosome is not None else chromosome()
         self.path = [self.position]
         self.fitness = 0
 
@@ -34,3 +34,11 @@ class knight:
             self.position = self.path[-1]
         else:
             raise ValueError("Cannot move backward from the initial position.")
+
+
+def check_moves():
+    pass
+
+def evaluate_fitness():
+    pass
+
