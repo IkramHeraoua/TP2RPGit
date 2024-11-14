@@ -1,9 +1,9 @@
-from genetic.chromosome import chromosome
+from genetic.chromosome import Chromosome
 import random
-class knight:
+class Knight:
     def __init__(self, chrome=None):
         self.position = [0, 0]
-        self.chromosome = chrome if chrome is not None else chromosome()
+        self.chromosome = chrome if chrome is not None else Chromosome()
         self.path = [self.position]
         self.fitness = 0
 
@@ -84,7 +84,7 @@ def evaluate_fitness():
     pass
 
 if __name__ == "__main__":
-    knight1 = knight()
+    knight1 = Knight()
     print("Chromosome après vérification:", knight1.chromosome)
     knight1.check_moves()
     print("Chromosome après vérification:", knight1.chromosome)
