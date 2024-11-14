@@ -1,8 +1,8 @@
 import pygame
 import sys
-from genetic.chromosome import chromosome
+from genetic.chromosome import Chromosome
 from visualisation.visualize import Visualize
-from game.knight import knight
+from game.knight import Knight
 
 def main():
   pygame.init()
@@ -12,14 +12,14 @@ def main():
   pygame.display.set_caption("Knight's Tour")
   font = pygame.font.Font(None, 36)
   try:
-      knight_image = pygame.image.load("assets/cavalier.png")  # Remplacez "knight.png" par le chemin de votre image
+      knight_image = pygame.image.load("assets/cavalier.png")  
       knight_image = pygame.transform.scale(knight_image, (50, 50))  # Redimensionner l'image si nécessaire
   except pygame.error as e:
       print(f"Erreur lors du chargement de l'image: {e}")
       sys.exit()
   # Initialiser la classe Visualize
   visualizer = Visualize()
-  knight_obj = knight()
+  knight_obj = Knight()
 
   running = True
   while running:

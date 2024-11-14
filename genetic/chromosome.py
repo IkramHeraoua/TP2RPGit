@@ -1,6 +1,6 @@
 import random
 
-class chromosome:
+class Chromosome:
     def __init__(self, genes=None):
         if genes is None:
             # Générer 63 mouvements aléatoires (1-8)
@@ -18,7 +18,7 @@ class chromosome:
         point = random.randint(0, len(self.genes) - 1)
         child1_genes = self.genes[:point] + partner.genes[point:]
         child2_genes = partner.genes[:point] + self.genes[point:]
-        return chromosome(child1_genes), chromosome(child2_genes)
+        return Chromosome(child1_genes), Chromosome(child2_genes)
 
     def mutation(self):
         # Choisir un gène aléatoire à muter
