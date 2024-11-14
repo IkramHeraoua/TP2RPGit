@@ -1,5 +1,6 @@
 import pygame
 import sys
+from genetic.chromosome import chromosome
 from visualisation.visualize import Visualize
 from game.knight import knight
 
@@ -19,8 +20,6 @@ def main():
   # Initialiser la classe Visualize
   visualizer = Visualize()
   knight_obj = knight()
-
-
 
   running = True
   while running:
