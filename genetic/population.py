@@ -1,17 +1,37 @@
+import random
 from game.knight import Knight
+
 class Population:
-    def __init__(self, population_size):
-        self.population_size = population_size
-        self.generation = 1
-        self.knights = [knight() for _ in range(self.population_size)]
+  def __init__(self, population_size):
+      self.population_size = population_size
+      self.generation = 1
+      self.knights = [Knight() for _ in range(self.population_size)]
 
-    def check_population(self):
-          for knight in self.knights:
-              knight.check_moves()
+  def check_population(self):
+      for knight in self.knights:
+          knight.check_moves()
 
-if __name__ == "__main__":
-    population_size = 10  # Define the size of the population
-    population1 = Population(population_size)
-    population1.check_population()
-    for knight in population1.knights:
-        print(f"Knight final position: {knight.position}")
+  def evaluate(self):
+      for knight in self.knights:
+          knight.evaluate_fitness()
+      max_fitness_knight = max(self.knights, key=lambda knight: knight.fitness)
+      return max_fitness_knight.fitness, max_fitness_knight
+
+  def tournament_selection(self, tournament_size=3):
+      tournament = random.sample(self.knights, tournament_size)
+      tournament.sort(key=lambda knight: knight.fitness, reverse=True)
+      return tournament[:2]  # Retourner les deux meilleurs chevaliers
+
+  def create_new_generation(self):
+      new_population = []
+      while len(new_population) < self.population_size:
+          parents = self.tournament_selection()
+          parent1, parent2 = parents
+          offspring1_chromosome, offspring2_chromosome = parent1.chromosome.crossover(parent2.chromosome)
+          offspring1_chromosome.mutation()
+          offspring2_chromosome.mutation()
+          offspring1 = Knight(offspring1_chromosome)
+          offspring2 = Knight(offspring2_chromosome)
+          new_population.extend([offspring1, offspring2])
+      self.knights = new_population[:self.population_size]
+      self.generation += 1
